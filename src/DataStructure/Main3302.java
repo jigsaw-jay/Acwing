@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
+
 /*中缀表达式求值*/
 public class Main3302 {
     public static Stack<Integer> num = new Stack<>();
@@ -23,7 +24,7 @@ public class Main3302 {
             if (Character.isDigit(c)) {
                 int x = 0, j = i;
                 while (j < s.length() && Character.isDigit(s.charAt(j))) {
-                    x = x * 10 + s.charAt(j++) - '0';
+                    x = x * 10 + s.charAt(j) - '0';
                 }
                 i = j - 1;
                 num.push(x);
@@ -35,14 +36,14 @@ public class Main3302 {
                 }
                 op.pop();
             } else {
-                while (op.size() > 0 && op.peek() != '(' && pr.get(op.peek()) >= pr.get(c)) {
+                while (op.size()>0&&op.peek()!='('&&pr.get(op.peek())>=pr.get(c)){
                     calc();
                 }
                 op.push(c);
             }
         }
-        while (op.size() > 0) calc();
-        bw.write(num.peek()+"\n");
+        while (op.size()>0) calc();
+        bw.write(num.peek() + "\n");
         br.close();
         bw.close();
     }
